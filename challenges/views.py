@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-from django.template.loader import render_to_string
 
 # Create your views here.
 monthly_challenges = {
@@ -12,7 +11,7 @@ monthly_challenges = {
     "may": "May activity",
     "june": "June activity",
     "july": "July activity",
-    "august": "Aug activity",
+    "august": "Aug activity (If you have a background in programming, or if you\’re used to languages which mix programming code directly into HTML, you’ll want to bear in mind that the Django template system is not simply Python embedded into HTML. This is by design: the template system is meant to express presentation, not program logic.)",
     "september": "Sept activity",
     "october": "Oct activity",
     "november": "Nov activity",
@@ -47,7 +46,9 @@ def monthly_challenge_number(reuest, month):
 def monthly_challenge(request, month):
     try:
         challenge_text = monthly_challenges[month]
-        response_data = render_to_string("challenges/challenge.html")
-        return HttpResponse(response_data)
+        return render(request, "challenges/challenge.html", {
+            "month_name": month,
+            "text": challenge_text
+        })
     except:
         return HttpResponseNotFound(f"{month.capitalize()} is not supported, Please enter a valid month")
