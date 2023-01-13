@@ -18,5 +18,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path("", include("challenges.urls")),
-    path("challenge/", include("challenges.urls"))  # app - challenges
+    path("challenges/", include("challenges.urls"))  # app - challenges
 ]
