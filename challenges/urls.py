@@ -2,7 +2,7 @@ from django.urls import path
 from .views import monthly_challenge, monthly_challenge_number, index
 
 urlpatterns = [
-    path("", index),
+    path("", index, name='index'),
     # Dynamic months for numbers(<identifier>)
     path('<int:month>', monthly_challenge_number),
     # Dynamic months for strings(<identifier>)

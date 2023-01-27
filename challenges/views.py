@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 
 # Create your views here.
@@ -47,4 +47,4 @@ def monthly_challenge(request, month):
             "text": challenge_text
         })
     except:
-        return HttpResponseNotFound(f"{month.capitalize()} is not supported, Please enter a valid month")
+        raise Http404()
